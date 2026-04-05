@@ -1,15 +1,15 @@
 [package]
-name = "thing-cli"
-version = "0.1.0"
+name = "things-cli"
+version = "0.2.0"
 edition = "2024"
-description = "Public CLI for agents working with the real Things 3 app"
+description = "things-cli: public CLI for agents working with the real Things 3 app"
 license = "MIT"
-homepage = "https://github.com/yogevkr/thing-cli"
-repository = "https://github.com/yogevkr/thing-cli"
-default-run = "thing"
+homepage = "https://github.com/yogevkr/things-cli"
+repository = "https://github.com/yogevkr/things-cli"
+default-run = "things-cli"
 
 [[bin]]
-name = "thing"
+name = "things-cli"
 path = "src/main.rs"
 
 [dependencies]

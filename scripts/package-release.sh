@@ -37,9 +37,11 @@ PY
 )"
 fi
 
+version_no_prefix="${version#v}"
+
 arch="${arch_override:-$(uname -m)}"
 dist_dir="$repo_root/dist"
-package_dir="$dist_dir/thing-${version}-macos-${arch}"
+package_dir="$dist_dir/things-cli-v${version_no_prefix}-macos-${arch}"
 archive_path="${package_dir}.tar.gz"
 sha_path="${archive_path}.sha256"
 
@@ -47,11 +49,11 @@ mkdir -p "$dist_dir"
 rm -rf "$package_dir" "$archive_path" "$sha_path"
 mkdir -p "$package_dir"
 
-if [[ ! -x "$repo_root/target/release/thing" ]]; then
+if [[ ! -x "$repo_root/target/release/things-cli" ]]; then
   cargo build --manifest-path "$repo_root/Cargo.toml" --locked --release >/dev/null
 fi
 
-cp "$repo_root/target/release/thing" "$package_dir/"
+cp "$repo_root/target/release/things-cli" "$package_dir/"
 cp "$repo_root/README.md" "$repo_root/LICENSE" "$package_dir/"
 tar -C "$dist_dir" -czf "$archive_path" "$(basename "$package_dir")"
 shasum -a 256 "$archive_path" > "$sha_path"

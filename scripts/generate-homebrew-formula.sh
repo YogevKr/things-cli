@@ -54,8 +54,8 @@ for required in version homepage arm_url arm_sha256 intel_url intel_sha256; do
 done
 
 formula="$(cat <<EOF
-class Thing < Formula
-  desc "Public CLI for agents working with the real Things 3 app"
+class ThingsCli < Formula
+  desc "things-cli: public CLI for agents working with the real Things 3 app"
   homepage "$homepage"
   version "$version"
   license "MIT"
@@ -71,13 +71,13 @@ class Thing < Formula
   end
 
   def install
-    odie "thing requires macOS" unless OS.mac?
-    bin.install "thing"
+    odie "things-cli requires macOS" unless OS.mac?
+    bin.install "things-cli"
     prefix.install "README.md", "LICENSE"
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/thing --version")
+    assert_match version.to_s, shell_output("#{bin}/things-cli --version")
   end
 end
 EOF

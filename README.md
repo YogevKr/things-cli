@@ -1,8 +1,8 @@
-# thing-cli
+# things-cli
 
 Public Rust CLI for agents working against the real Things 3 app on macOS.
 
-`thing` talks to `/Applications/Things3.app` through `osascript`, so it reads and writes your actual Things tasks.
+`things-cli` talks to `/Applications/Things3.app` through `osascript`, so it reads and writes your actual Things tasks.
 
 ## Why
 
@@ -31,11 +31,11 @@ make install
 
 ## Homebrew
 
-The Homebrew flow is generator-based: use the real release URLs and checksums from `yogevkr/thing-cli`.
+The Homebrew flow is generator-based: use the real release URLs and checksums from `yogevkr/things-cli`.
 The intended public repos are:
 
-- app repo: `https://github.com/yogevkr/thing-cli`
-- tap repo: `https://github.com/yogevkr/homebrew-thing`
+- app repo: `https://github.com/yogevkr/things-cli`
+- tap repo: `https://github.com/yogevkr/homebrew-things-cli`
 
 1. Build release artifacts locally or from the tagged GitHub Actions workflow:
 
@@ -47,29 +47,29 @@ make package-release
 
 ```bash
 make homebrew-formula \
-  VERSION=0.1.0 \
-  HOMEPAGE=https://github.com/yogevkr/thing-cli \
-  ARM_URL=https://github.com/yogevkr/thing-cli/releases/download/v0.1.0/thing-v0.1.0-macos-arm64.tar.gz \
+  VERSION=0.2.0 \
+  HOMEPAGE=https://github.com/yogevkr/things-cli \
+  ARM_URL=https://github.com/yogevkr/things-cli/releases/download/v0.2.0/things-cli-v0.2.0-macos-arm64.tar.gz \
   ARM_SHA256=<arm64 sha256> \
-  INTEL_URL=https://github.com/yogevkr/thing-cli/releases/download/v0.1.0/thing-v0.1.0-macos-x86_64.tar.gz \
+  INTEL_URL=https://github.com/yogevkr/things-cli/releases/download/v0.2.0/things-cli-v0.2.0-macos-x86_64.tar.gz \
   INTEL_SHA256=<x86_64 sha256> \
-  OUTPUT=Formula/thing.rb
+  OUTPUT=Formula/things-cli.rb
 ```
 
-3. Commit the generated `Formula/thing.rb` into your tap repo, then install:
+3. Commit the generated `Formula/things-cli.rb` into your tap repo, then install:
 
 ```bash
-brew install yogevkr/thing/thing
+brew install yogevkr/things-cli/things-cli
 ```
 
 ## Release
 
 Tagged pushes matching `v*` build a macOS release artifact in GitHub Actions and attach:
 
-- `thing-<tag>-macos-arm64.tar.gz`
-- `thing-<tag>-macos-arm64.tar.gz.sha256`
-- `thing-<tag>-macos-x86_64.tar.gz`
-- `thing-<tag>-macos-x86_64.tar.gz.sha256`
+- `things-cli-v<tag>-macos-arm64.tar.gz`
+- `things-cli-v<tag>-macos-arm64.tar.gz.sha256`
+- `things-cli-v<tag>-macos-x86_64.tar.gz`
+- `things-cli-v<tag>-macos-x86_64.tar.gz.sha256`
 
 Before tagging, run the local release gate:
 
@@ -80,17 +80,17 @@ make release-check
 ## Commands
 
 ```bash
-thing lists
-thing list
-thing list --list Inbox --json
-thing create "Review pipeline cost" --notes "check noisy logs" --tag work
-thing get "Review pipeline cost" --json
-thing update "Review pipeline cost" --notes "done" --tag work --tag follow-up
-thing move "Review pipeline cost" --to Anytime
-thing schedule "Review pipeline cost" --for tomorrow
-thing complete "Review pipeline cost"
-thing open "Review pipeline cost"
-thing delete "Review pipeline cost"
+things-cli lists
+things-cli list
+things-cli list --list Inbox --json
+things-cli create "Review pipeline cost" --notes "check noisy logs" --tag work
+things-cli get "Review pipeline cost" --json
+things-cli update "Review pipeline cost" --notes "done" --tag work --tag follow-up
+things-cli move "Review pipeline cost" --to Anytime
+things-cli schedule "Review pipeline cost" --for tomorrow
+things-cli complete "Review pipeline cost"
+things-cli open "Review pipeline cost"
+things-cli delete "Review pipeline cost"
 ```
 
 ## Agent Usage
@@ -98,14 +98,14 @@ thing delete "Review pipeline cost"
 Use `--json` for machine-readable results:
 
 ```bash
-thing --json create "Draft weekly review" --notes-file - --list Inbox --tag agent <<'EOF'
+things-cli --json create "Draft weekly review" --notes-file - --list Inbox --tag agent <<'EOF'
 Summarize open work, deadlines, and blocked items.
 EOF
 
-thing --json list --query review
-thing --json get "Draft weekly review"
-thing --json update "Draft weekly review" --notes "ready" --tag agent --tag weekly
-thing --json complete "Draft weekly review"
+things-cli --json list --query review
+things-cli --json get "Draft weekly review"
+things-cli --json update "Draft weekly review" --notes "ready" --tag agent --tag weekly
+things-cli --json complete "Draft weekly review"
 ```
 
 Selectors accept either a task `id` or an exact task `name`.

@@ -2,9 +2,9 @@ use clap::{Args, Parser, Subcommand};
 
 #[derive(Debug, Parser)]
 #[command(
-    name = "thing",
+    name = "things-cli",
     version,
-    about = "Public CLI for agents working with the real Things 3 app"
+    about = "things-cli: public CLI for agents working with the real Things 3 app"
 )]
 pub struct Cli {
     /// Emit machine-readable JSON.

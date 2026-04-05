@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-bin="${THING_BIN:-$repo_root/target/debug/thing}"
+bin="${THINGS_CLI_BIN:-$repo_root/target/debug/things-cli}"
 
 if [[ ! -d /Applications/Things3.app ]]; then
   echo "Things 3 is required at /Applications/Things3.app" >&2
@@ -13,7 +13,7 @@ if [[ ! -x "$bin" ]]; then
   cargo build --manifest-path "$repo_root/Cargo.toml" >/dev/null
 fi
 
-name="thing-cli-e2e-$(date +%Y%m%dT%H%M%S)"
+name="things-cli-e2e-$(date +%Y%m%dT%H%M%S)"
 cleanup() {
   "$bin" delete "$name" >/dev/null 2>&1 || true
 }

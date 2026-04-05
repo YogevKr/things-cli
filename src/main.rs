@@ -1,3 +1,3 @@
 fn main() -> std::process::ExitCode {
-    thing_cli::run()
+    things_cli::run()
 }
