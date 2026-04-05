@@ -35,7 +35,7 @@ The Homebrew flow is generator-based: use the real release URLs and checksums fr
 The intended public repos are:
 
 - app repo: `https://github.com/yogevkr/things-cli`
-- tap repo: `https://github.com/yogevkr/homebrew-things-cli`
+- tap repo: `https://github.com/yogevkr/homebrew-tap`
 
 1. Build release artifacts locally or from the tagged GitHub Actions workflow:
 
@@ -59,7 +59,7 @@ make homebrew-formula \
 3. Commit the generated `Formula/things-cli.rb` into your tap repo, then install:
 
 ```bash
-brew install yogevkr/things-cli/things-cli
+brew install yogevkr/tap/things-cli
 ```
 
 ## Release
